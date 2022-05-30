@@ -1,0 +1,22 @@
+{
+  "name": "team-generator",
+  "version": "1.0.0",
+  "description": "Makes team members ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinyfins/Team-Generator.git"
+  },
+  "author": "shinyfins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shinyfins/Team-Generator/issues"
+  },
+  "homepage": "https://github.com/shinyfins/Team-Generator#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
