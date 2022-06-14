@@ -23,7 +23,7 @@ inquirer.prompt([
             type: "input",
             message: "What is your name?",
             },
-            
+
             {
             name: "ID",
             type: "number",
@@ -38,16 +38,14 @@ inquirer.prompt([
             
         ])
         .then((answer) => {
-            console.log("Hello " + answer.user_name);
+            employee = new Employee(answer.name, answer.ID, answer.Email)
         });
     case "Intern":
     case "Manager":
     case "Engineer":
     default: 
-        console.log("Please choose one of the following, Employee? Intern? Manager? Engineer?");
+      
 }
   });
 
-
-console.log("who is the first team member? Employee? Intern? Manager? Engineer?");
 
