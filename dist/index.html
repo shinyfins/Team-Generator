@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="displays">
+        <title>Engineer</title>
+        
+    
+
+    </div>
+</body>
+
+<script src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js';></script>
+
+<script>
+
+        function displayEmployee (title, name, ID, Email, Special) {
+            toast = document.createElement("div");
+
+            _title = document.createTextNode(title);
+            toast.appendChild(document.createElement("br"));
+            toast.appendChild(_title);
+            console.log(name);
+            toast.appendChild(document.createElement("br"));
+           toast.appendChild(document.createTextNode(name));
+            _ID = document.createTextNode(ID);
+            toast.appendChild(document.createElement("br"));
+            toast.appendChild(_ID);
+            _Email = document.createTextNode(Email);
+            toast.appendChild(document.createElement("br"));
+            toast.appendChild(_Email);
+            _Special = document.createTextNode(Special);
+            toast.appendChild(document.createElement("br"));
+            toast.appendChild(_Special);
+            
+            document.getElementById("displays").appendChild(toast);
+            
+        };
+        employees = [];
+        $.getJSON("../employees.json", function(data){
+            employees = data;
+            for(i=0; i<employees.length; i++){
+            currentEmployee = employees[i];
+            switch (currentEmployee["type"]){
+                case "Manager":
+                displayEmployee ("manager", currentEmployee.name, currentEmployee.id, currentEmployee.email, currentEmployee.officeNumber);
+                break;
+
+                case "Engineer":
+                displayEmployee ("engineer", currentEmployee.name, currentEmployee.id, currentEmployee.email, currentEmployee.github);
+                break;
+                case "Intern":
+                displayEmployee ("intern", currentEmployee.name, currentEmployee.id, currentEmployee.email, currentEmployee.school);
+                break;
+            }
+            
+        }
+        }).fail(function(){
+            console.log("An error has occurred.");
+        });
+
+    
+        
+</script>
+
+</html>

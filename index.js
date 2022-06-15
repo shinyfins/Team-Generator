@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+const fs = require("fs");
 const inquirer = require("inquirer");
 
 
@@ -5,7 +7,13 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
-inquirer.prompt([
+employees=[];
+// finished = false
+// while(!finished){
+
+
+function _prompt() {
+    inquirer.prompt([
     {
       name: "type",
       type: "list",
@@ -40,11 +48,14 @@ inquirer.prompt([
                 type: "number",
                 message: "What is the Manager office number?"
             }
+
             
         ])
         .then((answer) => {
-            manager = new Manager(answer.name, answer.ID, answer.Email, answer.Office_Number);
+            employees.push(new Manager(answer.name, answer.ID, answer.Email, answer.Office_Number));
+            _prompt();
         });
+        break;
 
     case "Intern":
         inquirer
@@ -74,8 +85,10 @@ inquirer.prompt([
             
         ])
         .then((answer) => {
-            intern = new Intern(answer.name, answer.ID, answer.Email, answer.School);
+            employees.push(new Intern(answer.name, answer.ID, answer.Email, answer.School));
+            _prompt();
         });
+        break;
     case "Engineer":
         inquirer
         .prompt([
@@ -104,11 +117,22 @@ inquirer.prompt([
             
         ])
         .then((answer) => {
-            engineer = new Engineer(answer.name, answer.ID, answer.Email, answer.Github);
+            employees.push(new Engineer(answer.name, answer.ID, answer.Email, answer.Github));
+            _prompt();
         });
-    default: 
+        break;
+         case "No more":
+            fs.writeFile("./employees.json", JSON.stringify(employees), err=>{
+                if(err){
+                    console.log(err);
+                }
+            });
+
+            break;
+         
       
 }
   });
-
+}
+_prompt();
 

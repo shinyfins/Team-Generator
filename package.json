@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --env=node",
-    "interact": "node index.js"
+    "interact": "node index.js --env=node"
   },
   "repository": {
     "type": "git",
